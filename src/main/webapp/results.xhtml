@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>MasterThought Movie Database Results:</title>
+    <h:outputStylesheet library="default" name="css/main.css"/>
+</h:head>
+<h:body bgcolor="white">
+    <div id="logo">
+        <h:graphicImage library="default" name="img/moviebaselogo.png"/>
+    </div>
+    <div id="results">
+        <h4>Results for: #{movie.name}</h4>
+        <h:panelGroup id="results_div" layout="block" rendered="#{movie != null}">
+
+        <ul>
+            <h:panelGroup layout="block" rendered="#{movie.imdbId != null}">
+            <li><img src="#{movie.pictureUrl}" alt="#{movie.name}"/> - <a href="#{movie.imdbId}">#{movie.name}</a></li></h:panelGroup>
+            <h:panelGroup layout="block" rendered="#{movie.director.name != null}">
+                <li>Directed by: #{movie.director.name} <img src="#{movie.director.pictureUrl}"
+                                                         alt="#{movie.director.name}"/>
+
+                <br/>
+                ... who also directed: <br/>
+                <ui:repeat value="#{movie.director.movies}" var="directorsMovie">
+                    "#{directorsMovie}"
+                </ui:repeat>
+                </li>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" rendered="#{not empty movie.genre}"> Genres:
+            <li><ui:repeat value="#{movie.genre}" var="genre">
+                    "#{genre}"
+                </ui:repeat>
+            </li>
+            </h:panelGroup>
+            <h:panelGroup layout="block" rendered="#{not empty movie.movieFestivals}">
+            <li> Festivals:
+                <ui:repeat value="#{movie.movieFestivals}" var="festival">
+                    "#{festival}"
+                </ui:repeat>
+            </li>
+            </h:panelGroup>
+            <h:panelGroup layout="block" rendered="#{not empty movie.productionCompanies}">
+            <li> Production Companies:
+                <ui:repeat value="#{movie.productionCompanies}" var="prodComp">
+                    "#{prodComp}"
+                </ui:repeat>
+            </li>
+            </h:panelGroup>
+        </ul>
+        <h:form id="search_form">
+            <h:commandButton id="search_btn" class="btn" value="BACK!" action="search"></h:commandButton>
+        </h:form>
+        </h:panelGroup>
+    </div>
+</h:body>
+</html>

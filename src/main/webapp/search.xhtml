@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>MasterThought Movie Database</title>
+    <h:outputStylesheet library="default" name="css/main.css" />
+</h:head>
+
+<h:body>
+    <div id="logo">
+        <h:graphicImage library="default" name="img/moviebaselogo.png" />
+    </div>
+    <div id="search_div">
+        <h3>Search:</h3>
+        <h:form id="search_form">
+            <h:inputText id="search_input" class="textfield" value="#{movie.name}"></h:inputText>
+            <h:commandButton id="search_btn" class="btn" value="GO!" action="results"></h:commandButton>
+        </h:form>
+    </div>
+</h:body>
+</html>
